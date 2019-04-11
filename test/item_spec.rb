@@ -29,6 +29,26 @@ describe "Testing item" do
     item.update
     expect(item.sell_in_value).to eql(9)
   end
+
+
+  it("should decrease quality") do 
+    item = get_item(10, 20)
+    item.update
+    expect(item.quality).to eql(19)
+  end
+  
+
+  it("should return 2 if sell in value is less than 0") do
+  	item = get_item(-1, 20)
+  	expect(item.get_degradation_value).to eql(2)
+  end
+
+
+  it("should decrease quality by 2 if sell in value is less than 0") do 
+    item = get_item(-1, 20)
+    item.update
+    expect(item.quality).to eql(18)
+  end
   
 
 end
