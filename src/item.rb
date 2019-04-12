@@ -12,8 +12,18 @@ class Item
 
 
   def update
-    @sell_in_value -= 1
-    @quality -= get_degradation_value
+    update_sell_in_value
+    update_quality
+  end
+  
+  
+  def update_sell_in_value
+  	@sell_in_value -= 1
+  end
+
+
+  def update_quality
+  	@quality -= get_degradation_value unless @quality == 0
   end
   
 
