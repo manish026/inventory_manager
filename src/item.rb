@@ -1,13 +1,14 @@
-
+require_relative '../src/quality'
 
 class Item 
 
-  attr_reader :sell_in_value, :quality
+  attr_reader :name, :sell_in_value, :quality
 
 
-  def initialize(sell_in_value, quality = 50)
+  def initialize(name, sell_in_value, quality = 50)
     @sell_in_value = sell_in_value
-    @quality = quality
+    @quality = Quality.new(quality)
+    @name = name
   end
 
 
@@ -23,7 +24,8 @@ class Item
 
 
   def update_quality
-  	@quality -= get_degradation_value unless @quality == 0
+  	@quality.upgrade if is_aged_brie
+  	@quality.degrade_by(get_degradation_value) 
   end
   
 
@@ -31,5 +33,11 @@ class Item
   	return 1 unless @sell_in_value < 0
   	return 2
   end
+
+
+  def is_aged_brie
+  	@name.downcase == "aged brie"
+  end
+
   
 end
