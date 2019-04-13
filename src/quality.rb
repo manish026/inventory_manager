@@ -30,8 +30,5 @@ class Quality
   	upgrade_by(1)
   end
 
-  
-  
-
 
 end
